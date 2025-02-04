@@ -1,0 +1,11 @@
+rsq_hp=smf.ols('HP~WT+VOL+SP',data=df).fit().rsquared
+vif_hp=1/(1-rsq_hp)
+rsq_wt=smf.ols('WT~HP+VOL+SP',data=df).fit().rsquared
+vif_wt=1/(1-rsq_wt)
+rsq_vol=smf.ols('VOL~HP+WT+SP',data=df).fit().rsquared
+vif_vol=1/(1-rsq_vol)
+rsq_sp=smf.ols('SP~HP+WT+VOL',data=df).fit().rsquared
+vif_sp=1/(1-rsq_sp)
+d1={'variables':['HP','WT','VOL','SP'],'VIF':[vif_hp,vif_wt,vif_vol,vif_sp]}
+vif_frame=pd.DataFrame(d1)
+vif_frame
